@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pamela</string>
+    <string name="action_settings">Settings</string>
+    <string name="counterLabel">Present members :</string>
+    <string name="labelLastUpdate">Last Update :</string>
+    <string name="has_key_image_desc">key image</string>
+    <string name="gravatar_image_desc">member gravatar</string>
+</resources>
