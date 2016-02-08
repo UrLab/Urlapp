@@ -26,6 +26,7 @@ import java.util.TimeZone;
 public class PamelaFieldsUpdater {
 
     private final int updateRate = 15;
+    private static ActionScheduler updateScheduler = null;
 
     public void update(final Activity activity) {
         final TextView counterTextView = (TextView) activity.findViewById(R.id.counter);
@@ -34,7 +35,11 @@ public class PamelaFieldsUpdater {
 
         HttpsTrustManager.allowAllSSL();
 
-        ActionScheduler as = new ActionScheduler() {
+        if (PamelaFieldsUpdater.updateScheduler!=null) {
+            updateScheduler.cancel();
+        }
+
+        updateScheduler = new ActionScheduler() {
             @Override
             protected void handler() {
                 RequestQueue queue = Volley.newRequestQueue(activity);
@@ -98,7 +103,7 @@ public class PamelaFieldsUpdater {
                 queue.add(stringRequest);
             }
         };
-        as.schedule(updateRate*1000);
+        updateScheduler.schedule(updateRate*1000);
 
     }
 }

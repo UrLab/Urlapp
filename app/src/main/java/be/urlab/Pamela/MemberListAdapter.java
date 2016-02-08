@@ -26,8 +26,7 @@ public class MemberListAdapter extends ArrayAdapter<Member> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.member_item, parent, false);
         TextView userNameView = (TextView) rowView.findViewById(R.id.username);
         ImageView hasKeyView = (ImageView) rowView.findViewById(R.id.has_key);
