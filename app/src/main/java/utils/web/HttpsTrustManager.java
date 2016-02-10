@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package utils.web;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;

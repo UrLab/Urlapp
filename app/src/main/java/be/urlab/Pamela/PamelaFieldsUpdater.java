@@ -22,6 +22,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import utils.thread.ActionScheduler;
+import utils.web.HttpsTrustManager;
+
 
 public class PamelaFieldsUpdater {
 

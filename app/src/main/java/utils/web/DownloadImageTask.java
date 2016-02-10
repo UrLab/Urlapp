@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package utils.web;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

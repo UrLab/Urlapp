@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package utils.thread;
 
 import android.app.Activity;
 
@@ -11,7 +11,7 @@ import java.util.TimerTask;
 public abstract class ActionScheduler extends Timer {
     protected boolean isTimerRunning;
 
-    protected void schedule(int rate) {
+    public void schedule(int rate) {
         isTimerRunning = true;
         this.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -20,7 +20,7 @@ public abstract class ActionScheduler extends Timer {
         }, 0, rate);
     };
 
-    protected void schedule(int rate, int delay) {
+    public void schedule(int rate, int delay) {
         isTimerRunning = true;
         this.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -29,7 +29,7 @@ public abstract class ActionScheduler extends Timer {
         }, delay, rate);
     };
 
-    protected void scheduleUI(final Activity act, int rate) {
+    public void scheduleUI(final Activity act, int rate) {
         isTimerRunning = true;
         this.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -47,7 +47,7 @@ public abstract class ActionScheduler extends Timer {
         }, 0, rate);
     };
 
-    protected void scheduleUI(final Activity act, int rate, int delay) {
+    public void scheduleUI(final Activity act, int rate, int delay) {
         isTimerRunning = true;
         this.scheduleAtFixedRate(new TimerTask() {
             public void run() {

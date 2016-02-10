@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import utils.web.DownloadImageTask;
+
 /**
  * Created by julianschembri on 7/02/16.
  */
