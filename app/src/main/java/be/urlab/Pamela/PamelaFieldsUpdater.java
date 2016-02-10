@@ -26,7 +26,8 @@ import java.util.TimeZone;
 public class PamelaFieldsUpdater {
 
     private final int updateRate = 15;
-    private static ActionScheduler updateScheduler = null;
+    private static ActionScheduler mainThreadScheduler = null;
+    private static ActionScheduler secondaryThreadScheduler = null;
 
     public void update(final Activity activity) {
         final TextView counterTextView = (TextView) activity.findViewById(R.id.counter);
@@ -35,11 +36,12 @@ public class PamelaFieldsUpdater {
 
         HttpsTrustManager.allowAllSSL();
 
-        if (PamelaFieldsUpdater.updateScheduler!=null) {
-            updateScheduler.cancel();
+        if (PamelaFieldsUpdater.mainThreadScheduler!=null) {
+            mainThreadScheduler.cancel();
+            mainThreadScheduler = null;
         }
 
-        updateScheduler = new ActionScheduler() {
+        mainThreadScheduler = new ActionScheduler() {
             @Override
             protected void handler() {
                 RequestQueue queue = Volley.newRequestQueue(activity);
@@ -54,20 +56,22 @@ public class PamelaFieldsUpdater {
                                     df.setTimeZone(TimeZone.getTimeZone("UTC"));
                                     final Date date = df.parse(response.getString("last_updated").toString());
 
+                                    // Cancel old thread if running
+                                    if (secondaryThreadScheduler!=null) {
+                                        secondaryThreadScheduler.cancel();
+                                        secondaryThreadScheduler = null;
+                                    }
+
                                     // Launch the update thread of Last Update field
-                                     ActionScheduler actionScheduler = new ActionScheduler() {
+                                    secondaryThreadScheduler = new ActionScheduler() {
                                         @Override
                                         protected void handler() {
                                             Date nowDate = new Date();
                                             int seconds = (int) (nowDate.getTime()-date.getTime())/1000;
                                             lastUpdateTextView.setText(Integer.toString(seconds)+" seconds");
-                                            ++cycleCounter;
-                                            if (cycleCounter==updateRate) {
-                                                this.cancel();
-                                            }
                                         }
                                     };
-                                    actionScheduler.scheduleUI(activity, 1000);
+                                    secondaryThreadScheduler.scheduleUI(activity, 1000);
 
                                     // Update Present Users field
                                     Integer nbUsers = response.getJSONArray("users").length();
@@ -103,7 +107,7 @@ public class PamelaFieldsUpdater {
                 queue.add(stringRequest);
             }
         };
-        updateScheduler.schedule(updateRate*1000);
+        mainThreadScheduler.schedule(updateRate * 1000);
 
     }
 }

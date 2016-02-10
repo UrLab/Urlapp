@@ -10,7 +10,6 @@ import java.util.TimerTask;
  */
 public abstract class ActionScheduler extends Timer {
     protected boolean isTimerRunning;
-    protected int cycleCounter=0;
 
     protected void schedule(int rate) {
         isTimerRunning = true;
