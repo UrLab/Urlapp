@@ -1,26 +1,35 @@
-package be.urlab.Pamela;
+package be.urlab.Main;
 
+import android.app.TabActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
-public class MainActivity extends AppCompatActivity {
+import be.urlab.Calendar.CalendarActivity;
+import be.urlab.Pamela.PamelaActivity;
+import be.urlab.Pamela.R;
 
+public class MainActivity extends TabActivity {
+    TabHost tabHost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        PamelaFieldsUpdater pfu = new PamelaFieldsUpdater();
-        pfu.update(this);
+        tabHost = (TabHost) findViewById(android.R.id.tabhost);
+
+        TabHost.TabSpec spec = tabHost.newTabSpec("Pamela");
+        spec.setContent(new Intent(this, PamelaActivity.class));
+        spec.setIndicator("Pamela");
+        tabHost.addTab(spec);
+
+        TabHost.TabSpec spec2 = tabHost.newTabSpec("Calendar");
+        spec2.setContent(new Intent(this, CalendarActivity.class));
+        spec2.setIndicator("Calendar");
+        tabHost.addTab(spec2);
+
     }
 
     @Override
