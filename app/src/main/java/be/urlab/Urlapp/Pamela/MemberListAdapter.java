@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package be.urlab.Urlapp.Pamela;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import be.urlab.Urlapp.R;
 import utils.web.DownloadImageTask;
 
 /**

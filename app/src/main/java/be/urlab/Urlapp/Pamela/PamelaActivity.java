@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package be.urlab.Urlapp.Pamela;
 
 import android.app.Activity;
 import android.view.View;
@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import be.urlab.Urlapp.R;
 import utils.thread.ActionScheduler;
 import utils.web.HttpsTrustManager;
 

@@ -1,4 +1,4 @@
-package be.urlab.Pamela;
+package be.urlab.Urlapp.Pamela;
 
 /**
  * Created by julianschembri on 7/02/16.

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pamela</string>
+    <string name="app_name">Urlapp</string>
     <string name="action_settings">Settings</string>
     <string name="counterLabel">Present members :</string>
     <string name="labelLastUpdate">Last Update :</string>

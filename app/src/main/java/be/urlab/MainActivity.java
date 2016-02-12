@@ -1,4 +1,4 @@
-package be.urlab.Main;
+package be.urlab;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
-import be.urlab.Calendar.CalendarActivity;
-import be.urlab.Pamela.PamelaActivity;
-import be.urlab.Pamela.R;
+import be.urlab.Urlapp.Calendar.CalendarActivity;
+import be.urlab.Urlapp.Pamela.PamelaActivity;
+import be.urlab.Urlapp.R;
 
 public class MainActivity extends TabActivity {
     TabHost tabHost;
