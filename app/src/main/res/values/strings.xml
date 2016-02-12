@@ -5,4 +5,5 @@
     <string name="labelLastUpdate">Last Update :</string>
     <string name="has_key_image_desc">key image</string>
     <string name="gravatar_image_desc">member gravatar</string>
+    <string name="pamela_error_view_content">The https request failed.</string>
 </resources>
