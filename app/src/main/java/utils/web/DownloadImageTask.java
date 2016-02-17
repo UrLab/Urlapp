@@ -12,7 +12,7 @@ import java.io.InputStream;
  * Created by julianschembri on 7/02/16.
  */
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
+    protected ImageView bmImage;
 
     public DownloadImageTask(ImageView bmImage) {
         this.bmImage = bmImage;
@@ -35,3 +35,4 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         bmImage.setImageBitmap(result);
     }
 }
+

@@ -16,13 +16,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import be.urlab.Urlapp.R;
+import utils.date.DateUtil;
 import utils.thread.ActionScheduler;
 import utils.web.HttpsTrustManager;
 
@@ -67,9 +66,7 @@ public class PamelaActivity extends Activity {
                                 final ListView memberList = (ListView) activity.findViewById(R.id.memberList);
 
                                 try {
-                                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-                                    df.setTimeZone(TimeZone.getTimeZone("UTC"));
-                                    final Date date = df.parse(response.getString("last_updated").toString());
+                                    final Date date = DateUtil.fromString(response.getString("last_updated"), "yyyy-MM-dd'T'HH:mm:ss.SSS");
 
                                     // Cancel old thread if running
                                     if (secondaryThreadScheduler!=null) {
