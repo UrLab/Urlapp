@@ -1,8 +1,11 @@
 package be.urlab.Urlapp.Pamela;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -31,10 +34,9 @@ import utils.web.HttpsTrustManager;
 public class PamelaActivity extends Activity {
 
     private final int updateRate = 15;
-    private  final String url ="https://urlab.be/api/space/pamela/";
+    private final String url ="https://urlab.be/api/space/pamela/";
 
     private static ActionScheduler mainThreadScheduler = null;
-    private static ActionScheduler secondaryThreadScheduler = null;
 
     @Override
     protected void onResume() {
@@ -62,28 +64,17 @@ public class PamelaActivity extends Activity {
                                 activity.setContentView(R.layout.pamela_main);
 
                                 final TextView counterTextView = (TextView) activity.findViewById(R.id.counter);
-                                final TextView lastUpdateTextView = (TextView) activity.findViewById(R.id.lastUpdate);
                                 final ListView memberList = (ListView) activity.findViewById(R.id.memberList);
+                                final ProgressBar progressBar = (ProgressBar) activity.findViewById(R.id.updateProgressBar);
 
                                 try {
                                     final Date date = DateUtil.fromString(response.getString("last_updated"), "yyyy-MM-dd'T'HH:mm:ss.SSS");
 
-                                    // Cancel old thread if running
-                                    if (secondaryThreadScheduler!=null) {
-                                        secondaryThreadScheduler.cancel();
-                                        secondaryThreadScheduler = null;
-                                    }
-
-                                    // Launch the update thread of Last Update field
-                                    secondaryThreadScheduler = new ActionScheduler() {
-                                        @Override
-                                        protected void handler() {
-                                            Date nowDate = new Date();
-                                            int seconds = (int) (nowDate.getTime()-date.getTime())/1000;
-                                            lastUpdateTextView.setText(Integer.toString(seconds)+" seconds");
-                                        }
-                                    };
-                                    secondaryThreadScheduler.scheduleUI(activity, 1000);
+                                    progressBar.setProgress(0);
+                                    ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 100);
+                                    animation.setDuration(updateRate*1000);
+                                    animation.setInterpolator(new LinearInterpolator());
+                                    animation.start();
 
                                     // Update Present Users field
                                     Integer nbUsers = response.getJSONArray("users").length();

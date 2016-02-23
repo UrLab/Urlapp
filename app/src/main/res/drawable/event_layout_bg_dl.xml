@@ -7,7 +7,7 @@
                 android:startColor="#AA000000"
                 android:type="linear"
                 android:endColor="#00000000"
-                android:centerColor="#44000000" />
+                android:centerColor="#99000000" />
         </shape>
     </item>
 </selector>

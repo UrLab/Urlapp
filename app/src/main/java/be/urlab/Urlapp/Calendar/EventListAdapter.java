@@ -87,7 +87,11 @@ public class EventListAdapter extends ArrayAdapter<Event> {
 
         titleView.setText(anEvent.getTitle());
         placeView.setText(anEvent.getPlace());
-        dateView.setText(anEvent.getTime());
+        if (!anEvent.isIncubated()) {
+            dateView.setText(anEvent.getTime());
+        } else {
+            dateView.setVisibility(View.GONE);
+        }
 
         if (anEvent.hasImage()) {
             new ImageDownloader(imageView).execute(anEvent.getImageUrl());

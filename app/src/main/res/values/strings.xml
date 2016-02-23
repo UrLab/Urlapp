@@ -6,4 +6,8 @@
     <string name="has_key_image_desc">key image</string>
     <string name="gravatar_image_desc">member gravatar</string>
     <string name="pamela_error_view_content">The https request failed.</string>
+    <string name="title_activity_agenda__side__menu">Agenda_Side_Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
