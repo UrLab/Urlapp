@@ -1,0 +1,2 @@
+Notice that the current release was only checked under an android API21 emulator.
+There is no guarantee that this application will work under other android API versions, but the manifest minimum version is set to android API15.
