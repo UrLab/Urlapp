@@ -3,6 +3,7 @@ package be.urlab.Urlapp.Calendar;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -148,7 +149,12 @@ public class CalendarActivity extends AppCompatActivity
                 popup.setContentView(v);
                 popup.showAtLocation(parent, Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
 
-                View container = (View) popup.getContentView().getParent();
+                View container = null;
+                if (android.os.Build.VERSION.SDK_INT==Build.VERSION_CODES.M) {
+                    container = (View) popup.getContentView().getParent().getParent();
+                } else {
+                    container = (View) popup.getContentView().getParent();
+                }
                 WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
                 WindowManager.LayoutParams pe = (WindowManager.LayoutParams) container.getLayoutParams();
                 pe.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
